@@ -43,20 +43,5 @@ get headerAvatar(): Locator {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
     await this.loginDirectoryButton.click();
-//      const terminateAppeared = await this.terminateSessionButton
-//     .waitFor({ state: 'visible', timeout: 4000 })
-//     .then(() => true)
-//     .catch(() => false);
-
-//   if (terminateAppeared) {
-//     await this.terminateSessionButton.click();
-//   }
-//   await expect(this.headerAvatar).toBeVisible({ timeout: 15000 });
-
-//         const dialogVisible = await this.terminateDialog.isVisible({ timeout: 3000 }).catch(() => false);
-//         if (dialogVisible) {
-//         await this.terminateSessionButton.click();
-//   }
-    // await expect(this.page.locator('.menu-tab-icon-section')).toBeVisible();
   }
 }
