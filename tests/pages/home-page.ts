@@ -118,7 +118,13 @@ export class HomePage {
     await this.firstTeamOption.click();
     await this.detailsField.click();
     await this.detailsField.fill('This is a test ticket created by Playwright');
-    await this.saveButton.click();
+   const [resp] = await Promise.all([
+    this.page.waitForResponse(r =>
+      r.request().method() === 'POST' &&
+      r.url().includes('/itsm/rest/data-card') &&
+      r.status() === 200
+    ),
+    this.saveButton.click(),]);
     await expect(this.ticketNumberHeader).toBeVisible({ timeout: 10_000 });
   }
 }
