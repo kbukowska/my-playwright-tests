@@ -11,22 +11,19 @@ const getEnv = (k: string): string => {
 const VALID_USER = getEnv('EFECTE_USERNAME');
 const VALID_PASS = getEnv('EFECTE_PASSWORD');
 
+
 test.only('User can create ticket', async ({ page }) => {
+  const terminateButton = page.getByRole('button', { name: /terminate the other session/i });
   const loginPage = new LoginPage(page);
   const homePage = new HomePage(page);
   await loginPage.goto();
   await loginPage.login(VALID_USER, VALID_PASS);
-  // wywołaj zaraz po próbie logowania (po submit)
-const terminateBtn = page.getByRole('button', { name: /terminate the other session/i });
-
 try {
-  // spróbuj poczekać chwilę na pojawienie się przycisku
-  await terminateBtn.waitFor({ state: 'visible', timeout: 2000 });
-  await terminateBtn.click();
-  // opcjonalnie: poczekaj aż strona przeładuje się po akcji
+  await terminateButton.waitFor({ state: 'visible', timeout: 2000 });
+  await terminateButton.click();
   await page.waitForLoadState('networkidle');
-} catch {
-  // okno się nie pojawiło – idziemy dalej
+} 
+catch {
 }
   await homePage.switchToAgentUI();
   await homePage.serviceDeskAgent.click();
