@@ -1,6 +1,5 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/login-page';
-import { HomePage } from '../pages/home-page';
+import { loginAndHandleSession } from '../helpers/helpers';
+import { test, expect } from '../fixtures/fixtures'
 
 const getEnv = (k: string): string => {
   const v = process.env[k];
@@ -11,20 +10,11 @@ const getEnv = (k: string): string => {
 const VALID_USER = getEnv('EFECTE_USERNAME');
 const VALID_PASS = getEnv('EFECTE_PASSWORD');
 
+test.beforeEach(async ({ page }) => {
+  await loginAndHandleSession(page, VALID_USER, VALID_PASS);
+});
 
-test.only('User can create ticket', async ({ page }) => {
-  const terminateButton = page.getByRole('button', { name: /terminate the other session/i });
-  const loginPage = new LoginPage(page);
-  const homePage = new HomePage(page);
-  await loginPage.goto();
-  await loginPage.login(VALID_USER, VALID_PASS);
-try {
-  await terminateButton.waitFor({ state: 'visible', timeout: 2000 });
-  await terminateButton.click();
-  await page.waitForLoadState('networkidle');
-} 
-catch {
-}
+test('User can create ticket', async ({ homePage }) => {
   await homePage.switchToAgentUI();
   await homePage.serviceDeskAgent.click();
   await homePage.openTickets.click();

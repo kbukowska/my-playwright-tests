@@ -18,27 +18,21 @@ export class HomePage {
   get switchButtonLabel(): Locator {
     return this.page.locator('.switch-button>span');
   }
-
   get serviceDeskAgent(): Locator {
     return this.page.getByText('Service Desk Agent');
   }
-
   get openTickets(): Locator {
     return this.page.locator('//div[contains(@class,"tree-nav-div")][@title="06. Open Tickets"]');
   }
-
   get sectionTitleName(): Locator {
     return this.page.locator('.wsh-view-name');
   }
-
   get createNewTicketButton(): Locator {
     return this.page.locator('#create-new-dc');
   }
-
   get newTicketContainer(): Locator {
     return this.page.getByTestId('data-card-container');
   }
-
   get quickfillInput(): Locator {
     return this.page.locator('#reference-dropdown-7792477');
   }
@@ -58,30 +52,24 @@ export class HomePage {
   get detailsField(): Locator {
     return this.page.locator('#rte-7792799_rte-edit-view');
   }
-
   get saveButton(): Locator {
     return this.page.locator('[data-test="save-datacard-button"]');
   }
-
   get cancelButton(): Locator {
     return this.page.locator('#cancel-datacard-button');
   }
-
   get descriptionTicketTypeField(): Locator {
     return this.page.locator('#7792256');
   }
   get descriptionTicketTypeOptionIncident(): Locator {
     return this.page.locator('.select2-results>li:nth-child(1)');
   }
-
   get teamField(): Locator {
     return this.page.getByTestId('reference-dropdown-7795676');
   }
-
   get firstTeamOption(): Locator {
     return this.page.locator('#item-0');
   }
-
   get ticketNumberHeader(): Locator {
     return this.page.locator('.title-with-breadcrumb');
   }

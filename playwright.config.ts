@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export default defineConfig({
-    workers: 2,
+  workers: 2,
   testDir: './tests',
   timeout: 60_000,
   expect: { timeout: 10_000 },

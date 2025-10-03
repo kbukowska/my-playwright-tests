@@ -2,20 +2,17 @@ import { Page, expect } from '@playwright/test';
 import { Locator } from '@playwright/test';
 
 export class LoginPage {
-  constructor(private page: Page) {}
+  constructor(private page: Page) { }
 
   async goto() {
     await this.page.goto('/', { waitUntil: 'domcontentloaded' });
   }
-
   get loginWindow(): Locator {
     return this.page.locator('.card-pf');
   }
-
   get usernameInput(): Locator {
     return this.page.locator('input[name="username"]');
   }
-
   get passwordInput(): Locator {
     return this.page.locator('input[name="password"]');
   }
@@ -29,14 +26,14 @@ export class LoginPage {
     return this.page.locator('.kc-feedback-text');
   }
   get terminateSessionButton(): Locator {
-  return this.page.getByRole('button', { name: /terminate the other session/i });
-}
-get terminateDialog(): Locator {
-  return this.page.getByText(/another user is currently logged in/i);
-}
-get headerAvatar(): Locator {
-  return this.page.getByTestId('header-avatar');
-}
+    return this.page.getByRole('button', { name: /terminate the other session/i });
+  }
+  get terminateDialog(): Locator {
+    return this.page.getByText(/another user is currently logged in/i);
+  }
+  get headerAvatar(): Locator {
+    return this.page.getByTestId('header-avatar');
+  }
 
   async login(username: string, password: string) {
     await expect(this.loginWindow).toBeVisible();
